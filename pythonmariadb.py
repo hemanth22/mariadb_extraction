@@ -1,6 +1,13 @@
 import mysql.connector as mysql
+import os
 import sys
 import csv
+
+databasename = os.environ['databasename']
+databasehost = os.environ['databasehost']
+databaseusername = os.environ['databaseusername']
+databasepassword = os.environ['databasepassword']
+databaseport = os.environ['databaseport']
 
 def connect(db_name, dbhost, dbuser, dbpass, dbport):
     try:
