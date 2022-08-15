@@ -21,7 +21,7 @@ message["Subject"] = "[High] mariadb_extraction status"
 message["From"] = sender_email
 message["To"] = receiver_email
 
-message.attach(MIMEText(file("test.csv").read()))
+message.attach(MIMEText(open("test.csv").read()))
 
 # write the plain text part
 text = """\
