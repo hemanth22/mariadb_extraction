@@ -4,7 +4,11 @@ import mimetypes
 import os
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from email.message import EmailMessage
+from email import encoders
+from email.mime.audio import MIMEAudio
+from email.mime.base import MIMEBase
+from email.mime.image import MIMEImage
+
 port=465
 smtp_server = os.environ.get("SMTP_ADDRESS")
 USER_EMAIL = os.environ.get("USER_EMAIL")
@@ -17,19 +21,8 @@ message["Subject"] = "[High] mariadb_extraction status"
 message["From"] = sender_email
 message["To"] = receiver_email
 
-# Add Attachment
-with open(filename, "rb") as attachment:
-    part = MIMEBase("application", "octet-stream")
-    part.set_payload(attachment.read())
-   
-encoders.encode_base64(part)
+msg.attach(MIMEText(file("test.csv").read()))
 
-# Set mail headers
-part.add_header(
-    "Content-Disposition",
-    "attachment", filename= filename
-)
-message.attach(part)
 # write the plain text part
 text = """\
 |INFORMATION|
