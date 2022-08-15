@@ -5,24 +5,31 @@ import os
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.message import EmailMessage
-message = EmailMessage()
 port=465
 smtp_server = os.environ.get("SMTP_ADDRESS")
 USER_EMAIL = os.environ.get("USER_EMAIL")
 USER_PASSWORD = os.environ.get("USER_PASSWORD")
 sender_email = "hemanth22hemu@gmail.com "
 receiver_email = "hemanthbitra@live.com"
-mime_type, _ = mimetypes.guess_type('test.csv')
-mime_type, mime_subtype = mime_type.split('/')
-with open('test.csv', 'rb') as file:
-    message.add_attachment(file.read(),
-    maintype=mime_type,
-    subtype=mime_subtype,
-    filename='test.csv')
+filename = "test.csv"
 message = MIMEMultipart("alternative")
 message["Subject"] = "[High] mariadb_extraction status"
 message["From"] = sender_email
 message["To"] = receiver_email
+
+# Add Attachment
+with open(filename, "rb") as attachment:
+    part = MIMEBase("application", "octet-stream")
+    part.set_payload(attachment.read())
+   
+encoders.encode_base64(part)
+
+# Set mail headers
+part.add_header(
+    "Content-Disposition",
+    "attachment", filename= filename
+)
+message.attach(part)
 # write the plain text part
 text = """\
 |INFORMATION|
