@@ -20,12 +20,9 @@ jobs:
             python --version
             python pythonmariadb.py
             cat test.csv
-            cp test.csv /tmp/test.csv
-          name: execute python code          
-      - store_artifacts:
-          path: /tmp/art-1
-          destination: artifact-file
-
+            mkdir -p /tmp/artifacts
+            cp test.csv /tmp/artifacts/test.csv
+          name: execute python code       
       - store_artifacts:
           path: /tmp/artifacts
 
