@@ -11,7 +11,7 @@ sender_email = "hemanth22hemu@gmail.com "
 receiver_email = "hemanthbitra@live.com"
 
 message = MIMEMultipart("alternative")
-message["Subject"] = "[High] keepalive_jfrog status"
+message["Subject"] = "[High] mariadb_extraction status"
 message["From"] = sender_email
 message["To"] = receiver_email
 # write the plain text part

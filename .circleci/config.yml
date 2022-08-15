@@ -22,6 +22,7 @@ jobs:
             cat test.csv
             mkdir -p /tmp/artifacts
             cp test.csv /tmp/artifacts/test.csv
+            python sendingmail.py
           name: execute python code       
       - store_artifacts:
           path: /tmp/artifacts
