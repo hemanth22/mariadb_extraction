@@ -53,3 +53,6 @@ jobs:
           databaseusername: ${{ secrets.DATABASEUSERNAME }}
           databasepassword: ${{ secrets.DATABASEPASSWORD }}
           databaseport: ${{ secrets.DATABASEPORT }}
+
+      - name: print test.csv
+        run: cat test.csv
