@@ -20,7 +20,15 @@ jobs:
             python --version
             python pythonmariadb.py
             cat test.csv
-          name: execute python code
+            cp test.csv /tmp/test.csv
+          name: execute python code          
+      - store_artifacts:
+          path: /tmp/art-1
+          destination: artifact-file
+
+      - store_artifacts:
+          path: /tmp/artifacts
+
 workflows:
   main:
     jobs:
